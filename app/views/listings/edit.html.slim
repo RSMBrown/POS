@@ -1,0 +1,11 @@
+h1 
+    | Edit listing
+=form_with model: @listing do |form|
+    = form.label "Choose the products that you would like to list as sale items"
+    br 
+    = form.collection_check_boxes :product_ids, Product.all, :id, :name do |x|
+        = x.check_box
+        = x.label
+        br 
+
+    = form.submit ("Submit")

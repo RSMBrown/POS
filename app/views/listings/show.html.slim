@@ -1,0 +1,13 @@
+h1 
+    | Listing (sale items)
+
+-@listing.products.each do |product|
+    li
+        =product.name
+        |, R
+        =product.price  
+
+br 
+=link_to "Edit Listing", edit_listing_path
+br 
+=link_to "All products", products_path

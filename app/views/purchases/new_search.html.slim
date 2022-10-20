@@ -1,0 +1,12 @@
+
+h1 
+    | Search for purchases by date 
+
+= form_with  url:"/search_date", method: :get do |form| 
+    =form.label "from"
+    =form.date_field :from
+    br 
+    =form.label "to"
+    =form.date_field :to
+    br 
+    =form.submit "Search"

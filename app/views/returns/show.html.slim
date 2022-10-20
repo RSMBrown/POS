@@ -1,0 +1,8 @@
+h1 
+    | Successfully returned 
+h3
+    -@return.products.each do |product|
+        li
+            =product.name 
+
+=link_to "All products", products_path

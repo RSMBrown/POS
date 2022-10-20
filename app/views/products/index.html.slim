@@ -1,0 +1,23 @@
+h1 
+    | Products 
+h2 
+    -@products.each do |product|
+        =link_to product.name, product 
+        br 
+br 
+-if current_user.roles == 'manager'
+    =link_to "New Products", new_product_path
+    br 
+    =link_to "Listings", listing_path(id: 1)
+    br 
+    =link_to "All Returns", returns_path
+    br 
+    =link_to "All purchases", purchases_path
+    br 
+    =link_to "Search purchases", new_search_path
+    br 
+-elsif current_user.roles == 'cashier' || current_user.roles == 'manager'
+    =link_to "Make purchase", new_purchase_path
+    br 
+-else 
+=link_to "Return product/s", new_return_path

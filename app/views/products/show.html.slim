@@ -1,0 +1,17 @@
+h1 
+    =@product.name 
+    |, R
+    =@product.price
+    br 
+h4 
+    =@product.description
+    br 
+
+-if current_user.roles == 'manager'
+    =link_to "Edit product", edit_product_path(@product)
+    br 
+    =link_to "Remove product", product_path(@product), 
+                method: :delete, 
+                data: { confirm: "Are you sure?" }
+    br 
+=link_to "All products", products_path

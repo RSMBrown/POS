@@ -1,0 +1,12 @@
+h1 
+    | All returns 
+
+h3 
+    -@tally.each do |key, value|
+        =key 
+        |, 
+        =value 
+        br
+    br 
+
+=link_to "All products", products_path

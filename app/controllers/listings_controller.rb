@@ -1,45 +1,29 @@
 class ListingsController < ApplicationController
-
-    def index 
-        @listings = Listing.all
-    end 
+    before_action :authenticate_user!
 
     def show 
-        @listing = Listing.find(params[:id])
-    end 
-
-    def new 
-        @listing = Listing.new
-    end 
-
-    def create 
-        @listing = Listing.create(listing_params)
-
-        if @listing.save 
-            redirect_to @listing
-        else 
-            render :new 
-        end 
+        @listing = Listing.find(1)
+        authorize @listing
     end 
 
     def edit 
-        @listing = Listing.find(params[:id])
+        @listing = Listing.find(1)
+        authorize @listing
     end 
 
     def update 
-        @listing = Listing.find(params[:id])
+        @listing = Listing.find(1)
 
-        if @listing.update(listing_params) 
+        if @listing.update(listing_params)
             redirect_to @listing
         else 
-            render :new 
+            render :edit 
         end 
+        authorize @listing
     end 
 
-    def destory 
-        @listing = Listing.find(params[:id])
-        @listing.destory
-
-        redirect_to listings_path
+    private 
+    def listing_params
+        params.require(:listing).permit(product_ids: [])
     end 
 end

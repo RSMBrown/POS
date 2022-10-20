@@ -1,29 +1,35 @@
 class ProductsController < ApplicationController
+    before_action :authenticate_user!
 
     def index 
         @products = Product.all
+        authorize @products
     end 
 
     def show 
         @product = Product.find(params[:id])
+        authorize @product
     end 
 
     def new 
         @product = Product.new
+        authorize @product
     end 
 
     def create 
-        @product = Product.create(product_params)
+        @product = Product.create!(product_params)
 
         if @product.save 
             redirect_to @product
         else 
             render :new 
         end 
+        authorize @product
     end 
 
     def edit 
         @product = Product.find(params[:id])
+        authorize @product
     end 
 
     def update 
@@ -34,13 +40,15 @@ class ProductsController < ApplicationController
         else 
             render :new 
         end 
+        authorize @product
     end 
 
-    def destory 
+    def destroy 
         @product = Product.find(params[:id])
-        @product.destory
+        @product.destroy
 
         redirect_to products_path
+        authorize @product
     end 
 
     private 

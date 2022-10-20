@@ -1,0 +1,13 @@
+h1 
+    | New return
+
+=form_with model: @listing, url: returns_path, method: :post do |form|
+    = form.label "Choose the product/s that you would like to return"
+    br 
+    br
+    = form.collection_check_boxes :product_ids, Product.all, :id, :name do |x|
+        = x.check_box
+        = x.label
+        br 
+    br
+    = form.submit ("Submit")

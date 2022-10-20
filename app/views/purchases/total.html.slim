@@ -1,0 +1,17 @@
+h1 
+    | Total cost 
+
+h3 
+    | Products 
+
+-@purchase.products.each do |product|
+    br
+    =product.name 
+    |, R
+    =product.price 
+
+h3 
+    | Total R
+    =@total_price 
+
+=link_to "All products", products_path

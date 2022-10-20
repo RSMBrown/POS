@@ -1,0 +1,16 @@
+h1 
+    | Make purhase 
+
+h3 
+    | All products currently on sale 
+
+=form_with model: @purchase do |form|
+    = form.label "Choose the products that you would like to list as sale items"
+    br 
+    br
+    = form.collection_check_boxes :product_ids, Product.all, :id, :name do |x|
+        = x.check_box
+        = x.label
+        br 
+    br 
+    = form.submit ("Submit")
